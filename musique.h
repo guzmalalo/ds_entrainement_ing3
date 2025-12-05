@@ -6,7 +6,6 @@
 
 typedef struct
 {
-    int id;
     char titre[MAX_NOM];
     char auteur[MAX_NOM];
     unsigned int duree;

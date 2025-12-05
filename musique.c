@@ -1,5 +1,6 @@
 #include "musique.h"
 #include <stdio.h>
+#include <string.h>
 
 // définition
 void ajouterChanson(Chanson playlist[MAX_CHANSONS],int* n)
@@ -30,6 +31,7 @@ void afficherPlaylist(Chanson playlist[MAX_CHANSONS], int n)
 
     for (int i = 0; i < n; i++)
     {
+        printf("Chanson %d :\n",i+1);
         printf(" Titre  %s  \n", playlist[i].titre);
         printf(" Auteur %s  \n", playlist[i].auteur);
         printf(" Durée  %d  \n", playlist[i].duree);
@@ -38,18 +40,26 @@ void afficherPlaylist(Chanson playlist[MAX_CHANSONS], int n)
         dureeTotal += playlist[i].duree;
     }
 
-    printf("Nombre total de chansons : %d" , n);
+    printf("Nombre total de chansons : %d\n" , n);
     printf("Durée totale de la playlist : %d" , dureeTotal);
 }
 
 void initChanson(Chanson *c)
 {
+    char buffer[100];
 
-    printf("Titre : ");
+    printf("\nTitre : ");
     fgets(c->titre, MAX_NOM, stdin);
+
+    int i = strlen(c->titre);
+    c->titre[i-1]= '\0';  // on transforme le \n en \0
+
     printf("Auteur : ");
     scanf("%s",c->auteur); // un seul mot
-    //fgets(temp.auteur, MAX_NOM, stdin);
-    printf("Durée");
-    scanf("%d", &(c->duree));
+
+    printf("Durée : ");
+    scanf(" %d", &(c->duree));
+
+    fgets(buffer, 100, stdin); // on vide le stdin
+
 }
